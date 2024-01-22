@@ -1,11 +1,0 @@
-
-	php:S1808"eEither split this list into multiple lines, aligned at column "20" or put all arguments on line "21".(úÇÿÿÿÿÿ
-S	php:S1106"9Move this open curly brace to the beginning of next line.(‘öÂøÿÿÿÿ
-N	php:S1106"9Move this open curly brace to the beginning of next line.(ÏÁÜ´
-S	php:S1106"9Move this open curly brace to the beginning of next line.(­Á¿úÿÿÿÿ
-N	php:S1106"9Move this open curly brace to the beginning of next line.(ııœ—
-N	php:S1106&"9Move this open curly brace to the beginning of next line.(ë·æ
-N	php:S1106$"9Move this open curly brace to the beginning of next line.(şÁÿ¯
-U	php:S1105";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
-U	php:S1105";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
-J	php:S1172"0Remove the unused function parameter "$channel".(­Á¿úÿÿÿÿ
