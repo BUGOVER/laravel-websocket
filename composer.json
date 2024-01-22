@@ -1,7 +1,7 @@
 {
   "name": "bugover/laravel-websocket",
   "description": "An easy to use WebSocket server",
-  "version": "1.14.2",
+  "version": "1.14.3",
   "keywords": [
     "beyondcode",
     "laravel-websockets"
