@@ -1,0 +1,24 @@
+
+N	php:S11062"9Move this open curly brace to the beginning of next line.(ÛÉÏí
+N	php:S1106F"9Move this open curly brace to the beginning of next line.(Ë’‘ê
+N	php:S1106R"9Move this open curly brace to the beginning of next line.(Åùóö
+N	php:S1106W"9Move this open curly brace to the beginning of next line.(Í£Øı
+N	php:S1106V"9Move this open curly brace to the beginning of next line.(„Œ“Ş
+N	php:S1106_"9Move this open curly brace to the beginning of next line.(„Œ“Ş
+S	php:S1106p"9Move this open curly brace to the beginning of next line.(ïÆìÑúÿÿÿÿ
+N	php:S1106t"9Move this open curly brace to the beginning of next line.(ØÊŞ
+U	php:S1105";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105#";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105-";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105>";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105C";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105L";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105Q";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105^";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105e";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105m";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+E	php:S1172""0Remove the unused function parameter "$payload".(ú€«“
+€	php:S3699S"fRemove this use of the output from "Channel::broadcast"; "Channel::broadcast" doesn't return anything.(ÕÁÂÑúÿÿÿÿ

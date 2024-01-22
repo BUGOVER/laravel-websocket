@@ -1,0 +1,20 @@
+
+N	php:S1106J"9Move this open curly brace to the beginning of next line.(ç‘ó¡
+S	php:S1106X"9Move this open curly brace to the beginning of next line.(Ùç±øÿÿÿÿ
+S	php:S1106i"9Move this open curly brace to the beginning of next line.(øÙêúÿÿÿÿ
+U	php:S1105";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105$";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105.";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S11053";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S11058";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105G";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105R";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105W";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105^";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105c";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105h";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105q";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+e	php:S2830"PRemove this creation of object in constructor. Use dependency injection instead.(¨µŞ»
+j	php:S2830"PRemove this creation of object in constructor. Use dependency injection instead.(öš”öûÿÿÿÿ

@@ -1,0 +1,21 @@
+
+rWeb:MaxLineLengthCheck]"KSplit this 127 characters long line (which is greater than 120 authorized).(è—¾Ãøÿÿÿÿ
+dphp:S103]"KSplit this 127 characters long line (which is greater than 120 authorized).(è—¾Ãøÿÿÿÿ
+N	php:S11067"9Move this open curly brace to the beginning of next line.(¬âÚ
+S	php:S1106>"9Move this open curly brace to the beginning of next line.(×¹‘¦üÿÿÿÿ
+N	php:S1106a"9Move this open curly brace to the beginning of next line.(º‡ôÓ
+N	php:S1106k"9Move this open curly brace to the beginning of next line.(ÜÛ“
+N	php:S1106t"9Move this open curly brace to the beginning of next line.(’¨Ëâ
+T	php:S1106ˆ"9Move this open curly brace to the beginning of next line.(±ŠÇŠıÿÿÿÿ
+U	php:S1105&";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105+";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S11056";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105=";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105Y";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105s";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105|";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+V	php:S1105ƒ";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+V	php:S1105‡";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+U	php:S1105";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ
+D	php:S2070b"*Use a stronger hashing algorithm than MD5.(›Êó…ÿÿÿÿÿ
+D	php:S11727"/Remove the unused function parameter "$values".(¬âÚ
