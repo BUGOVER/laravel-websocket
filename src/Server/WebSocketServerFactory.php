@@ -8,6 +8,7 @@ use Ratchet\Server\IoServer;
 use React\EventLoop\Loop;
 use React\EventLoop\LoopInterface;
 use React\Socket\SecureServer;
+use React\Socket\Server;
 use React\Socket\SocketServer;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
@@ -73,13 +74,13 @@ class WebSocketServerFactory
 
     public function createServer(): IoServer
     {
-        $socket = new SocketServer(uri: "{$this->host}:{$this->port}", loop: $this->loop);
+        $socket = new SocketServer(uri: "{$this->host}:{$this->port}", loop: $this->loop); // new Server();
 
         if (config('websockets.ssl.local_cert')) {
             $socket = new SecureServer($socket, $this->loop, config('websockets.ssl'));
         }
 
-        $urlMatcher = new UrlMatcher($this->routes, new RequestContext);
+        $urlMatcher = new UrlMatcher($this->routes, new RequestContext());
 
         $router = new Router($urlMatcher);
 

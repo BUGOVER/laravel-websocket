@@ -127,28 +127,28 @@ abstract class Controller implements HttpServerInterface
         $this->checkContentLength($from);
     }
 
-    public function onClose(ConnectionInterface $connection)
+    public function onClose(ConnectionInterface $conn)
     {
     }
 
-    public function onError(ConnectionInterface $connection, Exception $exception)
+    public function onError(ConnectionInterface $conn, Exception $e)
     {
-        if (!$exception instanceof HttpException) {
+        if (!$e instanceof HttpException) {
             return;
         }
 
         $responseData = json_encode([
-            'error' => $exception->getMessage(),
+            'error' => $e->getMessage(),
         ]);
 
-        $response = new Response($exception->getStatusCode(), [
+        $response = new Response($e->getStatusCode(), [
             'Content-Type' => 'application/json',
             'Content-Length' => strlen($responseData),
         ], $responseData);
 
-        $connection->send(Message::toString($response));
+        $conn->send(Message::toString($response));
 
-        $connection->close();
+        $conn->close();
     }
 
     abstract public function __invoke(Request $request);

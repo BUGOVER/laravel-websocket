@@ -37,38 +37,38 @@ class WebsocketsLogger extends Logger implements MessageComponentInterface
         return $this;
     }
 
-    public function onMessage(ConnectionInterface $connection, MessageInterface $message)
+    public function onMessage(ConnectionInterface $conn, MessageInterface $msg)
     {
         $this->info(
-            "{$connection->app->id}: connection id {$connection->socketId} received message: {$message->getPayload()}."
+            "{$conn->app->id}: connection id {$conn->socketId} received message: {$msg->getPayload()}."
         );
 
-        $this->app->onMessage(ConnectionLogger::decorate($connection), $message);
+        $this->app->onMessage(ConnectionLogger::decorate($conn), $msg);
     }
 
-    public function onClose(ConnectionInterface $connection)
+    public function onClose(ConnectionInterface $conn)
     {
-        $socketId = $connection->socketId ?? null;
+        $socketId = $conn->socketId ?? null;
 
         $this->warn("Connection id {$socketId} closed.");
 
-        $this->app->onClose(ConnectionLogger::decorate($connection));
+        $this->app->onClose(ConnectionLogger::decorate($conn));
     }
 
-    public function onError(ConnectionInterface $connection, Exception $exception)
+    public function onError(ConnectionInterface $conn, Exception $e)
     {
-        $exceptionClass = get_class($exception);
+        $exceptionClass = get_class($e);
 
-        $appId = $connection->app->id ?? 'Unknown app id';
+        $appId = $conn->app->id ?? 'Unknown app id';
 
-        $message = "{$appId}: exception `{$exceptionClass}` thrown: `{$exception->getMessage()}`.";
+        $message = "{$appId}: exception `{$exceptionClass}` thrown: `{$e->getMessage()}`.";
 
         if ($this->verbose) {
-            $message .= $exception->getTraceAsString();
+            $message .= $e->getTraceAsString();
         }
 
         $this->error($message);
 
-        $this->app->onError(ConnectionLogger::decorate($connection), $exception);
+        $this->app->onError(ConnectionLogger::decorate($conn), $e);
     }
 }

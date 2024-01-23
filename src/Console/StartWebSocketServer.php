@@ -44,7 +44,7 @@ class StartWebSocketServer extends Command
     {
         parent::__construct();
 
-        $this->loop = Loop::get();
+        $this->loop = Loop::get(); // LoopFactory::create();
     }
 
     /**

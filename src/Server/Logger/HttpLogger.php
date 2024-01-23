@@ -36,23 +36,23 @@ class HttpLogger extends Logger implements MessageComponentInterface
         $this->app->onMessage($connection, $message);
     }
 
-    public function onClose(ConnectionInterface $connection)
+    public function onClose(ConnectionInterface $conn)
     {
-        $this->app->onClose($connection);
+        $this->app->onClose($conn);
     }
 
-    public function onError(ConnectionInterface $connection, Exception $exception)
+    public function onError(ConnectionInterface $conn, Exception $e)
     {
-        $exceptionClass = get_class($exception);
+        $exceptionClass = get_class($e);
 
-        $message = "Exception `{$exceptionClass}` thrown: `{$exception->getMessage()}`";
+        $message = "Exception `{$exceptionClass}` thrown: `{$e->getMessage()}`";
 
         if ($this->verbose) {
-            $message .= $exception->getTraceAsString();
+            $message .= $e->getTraceAsString();
         }
 
         $this->error($message);
 
-        $this->app->onError($connection, $exception);
+        $this->app->onError($conn, $e);
     }
 }

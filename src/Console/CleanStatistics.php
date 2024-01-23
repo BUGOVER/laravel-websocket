@@ -15,7 +15,7 @@ class CleanStatistics extends Command
 
     protected $description = 'Clean up old statistics from the websocket log.';
 
-    public function handle()
+    public function handle(): void
     {
         $this->comment('Cleaning WebSocket Statistics...');
 

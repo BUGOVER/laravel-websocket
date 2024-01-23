@@ -54,7 +54,7 @@ return [
     /*
      * The maximum request size in kilobytes that is allowed for an incoming WebSocket request.
      */
-    'max_request_size_in_kb' => 256,
+    'max_request_size_in_kb' => 256, // * 1024
 
     /*
      * This path will be used to register the necessary routes for the package.
@@ -138,4 +138,21 @@ return [
      * `ChannelManager` interface provided by this package.
      */
     'channel_manager' => \BeyondCode\LaravelWebSockets\WebSockets\Channels\ChannelManagers\ArrayChannelManager::class,
+
+    /**
+     * Channels name with route
+     * This field for incoming request on websocket client.
+     */
+    'channels' => [
+        // prefix channel for all client whisper on front side ex. whisper(`broadcast-data/`, { })
+        'prefix' => 'broadcast-data',
+
+        'queue_handler' => 'default',
+
+        // channel_name => route file
+        'names' => [
+            'client-web' => 'client',
+            'client-api' => 'client',
+        ],
+    ]
 ];

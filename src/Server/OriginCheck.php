@@ -49,13 +49,13 @@ class OriginCheck implements HttpServerInterface
         return $this->_component->onMessage($from, $msg);
     }
 
-    public function onClose(ConnectionInterface $connection)
+    public function onClose(ConnectionInterface $conn)
     {
-        return $this->_component->onClose($connection);
+        return $this->_component->onClose($conn);
     }
 
-    public function onError(ConnectionInterface $connection, Exception $e)
+    public function onError(ConnectionInterface $conn, Exception $e)
     {
-        return $this->_component->onError($connection, $e);
+        return $this->_component->onError($conn, $e);
     }
 }

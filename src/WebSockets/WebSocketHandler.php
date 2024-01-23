@@ -14,10 +14,12 @@ use BeyondCode\LaravelWebSockets\WebSockets\Exceptions\UnknownAppKey;
 use BeyondCode\LaravelWebSockets\WebSockets\Exceptions\WebSocketException;
 use BeyondCode\LaravelWebSockets\WebSockets\Messages\PusherMessageFactory;
 use Exception;
-//use Random\RandomException;
+use JsonException;
 use Ratchet\ConnectionInterface;
 use Ratchet\RFC6455\Messaging\MessageInterface;
 use Ratchet\WebSocket\MessageComponentInterface;
+
+//use Random\RandomException;
 
 class WebSocketHandler implements MessageComponentInterface
 {
@@ -98,30 +100,33 @@ class WebSocketHandler implements MessageComponentInterface
         return $this;
     }
 
-    public function onMessage(ConnectionInterface $connection, MessageInterface $message)
+    /**
+     * @throws JsonException
+     */
+    public function onMessage(ConnectionInterface $conn, MessageInterface $msg): void
     {
-        $message = PusherMessageFactory::createForMessage($message, $connection, $this->channelManager);
+        $msg = PusherMessageFactory::createForMessage($msg, $conn, $this->channelManager);
 
-        $message->respond();
+        $msg->respond();
 
-        StatisticsLogger::webSocketMessage($connection);
+        StatisticsLogger::webSocketMessage($conn);
     }
 
-    public function onClose(ConnectionInterface $connection)
+    public function onClose(ConnectionInterface $conn)
     {
-        $this->channelManager->removeFromAllChannels($connection);
+        $this->channelManager->removeFromAllChannels($conn);
 
-        DashboardLogger::disconnection($connection);
+        DashboardLogger::disconnection($conn);
 
-        StatisticsLogger::disconnection($connection);
+        StatisticsLogger::disconnection($conn);
     }
 
-    public function onError(ConnectionInterface $connection, Exception $exception)
+    public function onError(ConnectionInterface $conn, Exception $e)
     {
-        if ($exception instanceof WebSocketException) {
-            $connection->send(
+        if ($e instanceof WebSocketException) {
+            $conn->send(
                 json_encode(
-                    $exception->getPayload()
+                    $e->getPayload()
                 )
             );
         }
