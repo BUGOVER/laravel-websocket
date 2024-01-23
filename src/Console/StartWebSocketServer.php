@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Cache;
 use React\Dns\Config\Config as DnsConfig;
 use React\Dns\Resolver\Factory as DnsFactory;
 use React\Dns\Resolver\ResolverInterface;
-use React\EventLoop\Factory as LoopFactory;
+use React\EventLoop\Loop;
 use React\EventLoop\LoopInterface;
 use React\Http\Browser;
 use React\Socket\Connector;
@@ -30,17 +30,21 @@ class StartWebSocketServer extends Command
 
     protected $description = 'Start the Laravel WebSocket Server';
 
-    /** @var LoopInterface */
-    protected $loop;
+    /**
+     * @var LoopInterface|null
+     */
+    protected ?LoopInterface $loop;
 
-    /** @var int */
-    protected $lastRestart;
+    /**
+     * @var mixed
+     */
+    protected mixed $lastRestart;
 
     public function __construct()
     {
         parent::__construct();
 
-        $this->loop = LoopFactory::create();
+        $this->loop = Loop::get();
     }
 
     /**
