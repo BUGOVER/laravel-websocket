@@ -5,10 +5,10 @@ namespace BeyondCode\LaravelWebSockets\Server;
 use BeyondCode\LaravelWebSockets\Server\Logger\HttpLogger;
 use Ratchet\Http\Router;
 use Ratchet\Server\IoServer;
-use React\EventLoop\Factory as LoopFactory;
+use React\EventLoop\Loop;
 use React\EventLoop\LoopInterface;
 use React\Socket\SecureServer;
-use React\Socket\Server;
+use React\Socket\SocketServer;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
@@ -33,38 +33,38 @@ class WebSocketServerFactory
 
     public function __construct()
     {
-        $this->loop = LoopFactory::create();
+        $this->loop = Loop::get(); // LoopFactory::create();
     }
 
-    public function useRoutes(RouteCollection $routes)
+    public function useRoutes(RouteCollection $routes): static
     {
         $this->routes = $routes;
 
         return $this;
     }
 
-    public function setHost(string $host)
+    public function setHost(string $host): static
     {
         $this->host = $host;
 
         return $this;
     }
 
-    public function setPort(string $port)
+    public function setPort(string $port): static
     {
         $this->port = $port;
 
         return $this;
     }
 
-    public function setLoop(LoopInterface $loop)
+    public function setLoop(LoopInterface $loop): static
     {
         $this->loop = $loop;
 
         return $this;
     }
 
-    public function setConsoleOutput(OutputInterface $consoleOutput)
+    public function setConsoleOutput(OutputInterface $consoleOutput): static
     {
         $this->consoleOutput = $consoleOutput;
 
@@ -73,7 +73,7 @@ class WebSocketServerFactory
 
     public function createServer(): IoServer
     {
-        $socket = new Server("{$this->host}:{$this->port}", $this->loop);
+        $socket = new SocketServer(uri: "{$this->host}:{$this->port}", loop: $this->loop);
 
         if (config('websockets.ssl.local_cert')) {
             $socket = new SecureServer($socket, $this->loop, config('websockets.ssl'));
