@@ -8,12 +8,8 @@ use Psr\Http\Message\RequestInterface;
 
 class QueryParameters
 {
-    /** @var RequestInterface */
-    protected $request;
-
-    public function __construct(RequestInterface $request)
+    public function __construct(protected RequestInterface $request)
     {
-        $this->request = $request;
     }
 
     public static function create(RequestInterface $request)

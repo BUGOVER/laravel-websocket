@@ -22,7 +22,10 @@ use Illuminate\Support\ServiceProvider;
 
 class WebSocketsServiceProvider extends ServiceProvider
 {
-    public function boot()
+    /**
+     * @return void
+     */
+    public function boot(): void
     {
         $this->publishes([
             __DIR__ . '/../config/websockets.php' => base_path('config/websockets.php'),
@@ -47,7 +50,10 @@ class WebSocketsServiceProvider extends ServiceProvider
         ]);
     }
 
-    protected function registerDashboardGate()
+    /**
+     * @return $this
+     */
+    protected function registerDashboardGate(): static
     {
         Gate::define('viewWebSocketsDashboard', function ($user = null) {
             return app()->environment('local');

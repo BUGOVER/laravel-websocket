@@ -10,6 +10,7 @@ use Illuminate\Broadcasting\BroadcastManager as BaseBroadcastManager;
 use Illuminate\Contracts\Broadcasting\Broadcaster;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Psr\Log\LoggerInterface;
+use Pusher\Pusher;
 use Pusher\PusherException;
 
 /**
@@ -27,12 +28,12 @@ class TlsBroadcastManager extends BaseBroadcastManager
      */
     protected function createPusherDriver(array $config): Broadcaster|PusherBroadcaster
     {
-        $pusher = new PusherInstance(
+        $pusher = new Pusher(
             config('broadcasting.connections.pusher.key'),
             config('broadcasting.connections.pusher.secret'),
             config('broadcasting.connections.pusher.app_id'),
             config('broadcasting.connections.pusher.options') ?? [],
-            new Guzzle() ?? null
+            new Guzzle() ?? null // Pass guzzle instance with verify false parameter
         );
 
         if ($config['log'] ?? false) {

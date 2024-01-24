@@ -71,9 +71,14 @@ class WebSocketHandler implements MessageComponentInterface
         return $this;
     }
 
-    protected function limitConcurrentConnections(ConnectionInterface $connection)
+    /**
+     * @param ConnectionInterface $connection
+     * @return $this
+     * @throws ConnectionsOverCapacity
+     */
+    protected function limitConcurrentConnections(ConnectionInterface $connection): static
     {
-        if (!is_null($capacity = $connection->app->capacity)) {
+        if (null !== ($capacity = $connection->app->capacity)) {
             $connectionsCount = $this->channelManager->getConnectionCount($connection->app->id);
             if ($connectionsCount >= $capacity) {
                 throw new ConnectionsOverCapacity();
@@ -83,6 +88,11 @@ class WebSocketHandler implements MessageComponentInterface
         return $this;
     }
 
+    /**
+     * @param ConnectionInterface $connection
+     * @return $this
+     * @throws UnknownAppKey
+     */
     protected function verifyAppKey(ConnectionInterface $connection): static
     {
         $appKey = QueryParameters::create($connection->httpRequest)->get('appKey');
