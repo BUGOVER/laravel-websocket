@@ -23,12 +23,8 @@ use Ratchet\WebSocket\MessageComponentInterface;
 
 class WebSocketHandler implements MessageComponentInterface
 {
-    /** @var ChannelManager */
-    protected $channelManager;
-
-    public function __construct(ChannelManager $channelManager)
+    public function __construct(protected ChannelManager $channelManager)
     {
-        $this->channelManager = $channelManager;
     }
 
     public function onOpen(ConnectionInterface $connection)

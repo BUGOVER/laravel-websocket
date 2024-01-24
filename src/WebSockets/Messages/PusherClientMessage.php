@@ -13,22 +13,11 @@ use stdClass;
 
 class PusherClientMessage implements PusherMessage
 {
-    /** \stdClass */
-    protected $payload;
-
-    /** @var ConnectionInterface */
-    protected $connection;
-
-    /** @var ChannelManager */
-    protected $channelManager;
-
-    public function __construct(stdClass $payload, ConnectionInterface $connection, ChannelManager $channelManager)
-    {
-        $this->payload = $payload;
-
-        $this->connection = $connection;
-
-        $this->channelManager = $channelManager;
+    public function __construct(
+        protected stdClass $payload,
+        protected ConnectionInterface $connection,
+        protected ChannelManager $channelManager
+    ) {
     }
 
     /**

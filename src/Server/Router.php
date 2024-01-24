@@ -17,9 +17,15 @@ use Symfony\Component\Routing\RouteCollection;
 
 class Router
 {
-    /** @var RouteCollection */
-    protected $routes;
-    protected $customRoutes;
+    /**
+     * @var RouteCollection|null
+     */
+    protected ?RouteCollection $routes = null;
+
+    /**
+     * @var Collection|null
+     */
+    protected ?Collection $customRoutes = null;
 
     public function __construct()
     {

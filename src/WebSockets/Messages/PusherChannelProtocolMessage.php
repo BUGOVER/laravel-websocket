@@ -9,22 +9,11 @@ use stdClass;
 
 class PusherChannelProtocolMessage implements PusherMessage
 {
-    /** @var stdClass */
-    protected $payload;
-
-    /** @var \React\Socket\ConnectionInterface */
-    protected $connection;
-
-    /** @var ChannelManager */
-    protected $channelManager;
-
-    public function __construct(stdClass $payload, ConnectionInterface $connection, ChannelManager $channelManager)
-    {
-        $this->payload = $payload;
-
-        $this->connection = $connection;
-
-        $this->channelManager = $channelManager;
+    public function __construct(
+        protected stdClass $payload,
+        protected ConnectionInterface $connection,
+        protected ChannelManager $channelManager
+    ) {
     }
 
     public function respond()

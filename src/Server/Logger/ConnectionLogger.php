@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeyondCode\LaravelWebSockets\Server\Logger;
 
 use Ratchet\ConnectionInterface;
@@ -9,6 +11,10 @@ class ConnectionLogger extends Logger implements ConnectionInterface
     /** @var ConnectionInterface */
     protected $connection;
 
+    /**
+     * @param ConnectionInterface $app
+     * @return self
+     */
     public static function decorate(ConnectionInterface $app): self
     {
         $logger = app(self::class);

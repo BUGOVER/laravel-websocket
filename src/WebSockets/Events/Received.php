@@ -15,27 +15,6 @@ class Received
     use SerializesModels;
 
     /**
-     * The WebSockets app id that the user connected to.
-     *
-     * @var string
-     */
-    public string $appId;
-
-    /**
-     * The Socket ID associated with the connection.
-     *
-     * @var string
-     */
-    public string $socketId;
-
-    /**
-     * The message received.
-     *
-     * @var MessageInterface
-     */
-    public MessageInterface $message;
-
-    /**
      * The decoded message as array.
      *
      * @var array
@@ -53,9 +32,6 @@ class Received
      */
     public function __construct(string $appId, string $socketId, MessageInterface $message)
     {
-        $this->appId = $appId;
-        $this->socketId = $socketId;
-        $this->message = $message;
         $this->decodedMessage = json_decode($message->getPayload(), true, 512, JSON_THROW_ON_ERROR);
     }
 }

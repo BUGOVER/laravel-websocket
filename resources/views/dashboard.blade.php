@@ -5,15 +5,16 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script
-            src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
+
 <div class="container" id="app">
     <div class="card col-xs-12 mt-4">
         <div class="card-header">
@@ -87,6 +88,7 @@
         </div>
     </div>
 </div>
+
 <script>
     new Vue({
         el: '#app',
@@ -101,7 +103,7 @@
             form: {
                 channel: null,
                 event: null,
-                data: null
+                data: null,
             },
             logs: [],
         },
@@ -122,14 +124,14 @@
                     auth: {
                         headers: {
                             'X-CSRF-Token': "{{ csrf_token() }}",
-                            'X-App-ID': this.app.id
-                        }
+                            'X-App-ID': this.app.id,
+                        },
                     },
-                    enabledTransports: ['ws', 'flash']
+                    enabledTransports: ['ws', 'flash'],
                 });
 
                 this.pusher.connection.bind('state_change', states => {
-                    $('div#status').text("Channels current state is " + states.current);
+                    $('div#status').text('Channels current state is ' + states.current);
                 });
 
                 this.pusher.connection.bind('connected', () => {
@@ -145,10 +147,10 @@
 
                 this.pusher.connection.bind('error', event => {
                     if (event.error.data.code === 4100) {
-                        $('div#status').text("Maximum connection limit exceeded!");
+                        $('div#status').text('Maximum connection limit exceeded!');
                         this.connected = false;
                         this.logs = [];
-                        throw new Error("Over capacity");
+                        throw new Error('Over capacity');
                     }
                 });
 
@@ -169,20 +171,20 @@
                             x: data.peak_connections.x,
                             y: data.peak_connections.y,
                             type: 'lines',
-                            name: '# Peak Connections'
+                            name: '# Peak Connections',
                         },
                         {
                             x: data.websocket_message_count.x,
                             y: data.websocket_message_count.y,
                             type: 'bar',
-                            name: '# Websocket Messages'
+                            name: '# Websocket Messages',
                         },
                         {
                             x: data.api_message_count.x,
                             y: data.api_message_count.y,
                             type: 'bar',
-                            name: '# API Messages'
-                        }
+                            name: '# API Messages',
+                        },
                     ];
                     let layout = {
                         margin: {
@@ -190,8 +192,8 @@
                             r: 0,
                             b: 50,
                             t: 50,
-                            pad: 4
-                        }
+                            pad: 4,
+                        },
                     };
 
                     this.chart = Plotly.newPlot('statisticsChart', chartData, layout);
@@ -207,25 +209,27 @@
                     'subscribed',
                     'client-message',
                     'api-message',
-                ].forEach(channelName => this.subscribeToChannel(channelName))
+                ].forEach(channelName => this.subscribeToChannel(channelName));
             },
 
             subscribeToChannel(channel) {
-                this.pusher.subscribe('{{ \BeyondCode\LaravelWebSockets\Dashboard\DashboardLogger::LOG_CHANNEL_PREFIX }}' + channel)
-                    .bind('log-message', (data) => {
+                this.pusher.subscribe(
+                    '{{ \BeyondCode\LaravelWebSockets\Dashboard\DashboardLogger::LOG_CHANNEL_PREFIX }}' + channel).
+                    bind('log-message', (data) => {
                         this.logs.push(data);
                     });
             },
 
             subscribeToStatistics() {
-                this.pusher.subscribe('{{ \BeyondCode\LaravelWebSockets\Dashboard\DashboardLogger::LOG_CHANNEL_PREFIX }}statistics')
-                    .bind('statistics-updated', (data) => {
-                            var update = {
-                                x:  [[data.time], [data.time], [data.time]],
-                                y: [[data.peak_connection_count], [data.websocket_message_count], [data.api_message_count]]
-                            };
+                this.pusher.subscribe(
+                    '{{ \BeyondCode\LaravelWebSockets\Dashboard\DashboardLogger::LOG_CHANNEL_PREFIX }}statistics').
+                    bind('statistics-updated', (data) => {
+                        var update = {
+                            x: [[data.time], [data.time], [data.time]],
+                            y: [[data.peak_connection_count], [data.websocket_message_count], [data.api_message_count]],
+                        };
 
-                            Plotly.extendTraces('statisticsChart', update, [0, 1, 2]);
+                        Plotly.extendTraces('statisticsChart', update, [0, 1, 2]);
                     });
             },
 
@@ -257,8 +261,8 @@
                 }).fail(() => {
                     alert('Error sending event.');
                 });
-            }
-        }
+            },
+        },
     });
 </script>
 </body>
