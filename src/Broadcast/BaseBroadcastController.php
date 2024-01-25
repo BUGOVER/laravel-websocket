@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\InputBag;
  *
  * @package Service\Socket
  */
-class BaseBroadcast
+class BaseBroadcastController
 {
     /**
      * @return string|int|float|bool|null
