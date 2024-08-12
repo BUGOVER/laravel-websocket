@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeyondCode\LaravelWebSockets\HttpApi\Controllers;
 
 use BeyondCode\LaravelWebSockets\WebSockets\Channels\PresenceChannel;
@@ -13,7 +15,7 @@ class FetchUsersController extends Controller
     {
         $channel = $this->channelManager->find($request->appId, $request->channelName);
 
-        if (is_null($channel)) {
+        if (null === $channel) {
             throw new HttpException(404, 'Unknown channel "' . $request->channelName . '"');
         }
 

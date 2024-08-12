@@ -1,7 +1,7 @@
 {
   "name": "bugover/laravel-websocket",
   "description": "An easy to use WebSocket server",
-  "version": "1.15.2",
+  "version": "1.15.3",
   "keywords": [
     "bugover",
     "laravel-websocket"
@@ -10,7 +10,7 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "Marcel Pociot",
+      "name": "naykunaMkatr",
       "email": "marcel@beyondco.de",
       "homepage": "https://beyondcode.de",
       "role": "Developer"
@@ -23,7 +23,7 @@
     }
   ],
   "require": {
-    "php": "^8.0",
+    "php": ">=8.0.2",
     "ext-json": "*",
     "cboden/ratchet": "^0.4.4",
     "facade/ignition-contracts": "^1.0.0",

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeyondCode\LaravelWebSockets\Statistics\Events;
 
 use BeyondCode\LaravelWebSockets\Dashboard\DashboardLogger;

@@ -30,7 +30,7 @@ class Received
      * @return void
      * @throws JsonException
      */
-    public function __construct(string $appId, string $socketId, MessageInterface $message)
+    public function __construct(public string $appId, public string $socketId, MessageInterface $message)
     {
         $this->decodedMessage = json_decode($message->getPayload(), true, 512, JSON_THROW_ON_ERROR);
     }

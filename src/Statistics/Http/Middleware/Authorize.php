@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeyondCode\LaravelWebSockets\Statistics\Http\Middleware;
 
 use BeyondCode\LaravelWebSockets\Apps\App;

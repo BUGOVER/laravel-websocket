@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeyondCode\LaravelWebSockets\WebSockets\Channels\ChannelManagers;
 
 use BeyondCode\LaravelWebSockets\WebSockets\Channels\Channel;
@@ -82,7 +84,7 @@ class ArrayChannelManager implements ChannelManager
                 unset($this->channels[$connection->app->id][$channelName]);
             });
 
-        if (count(Arr::get($this->channels, $connection->app->id, [])) === 0) {
+        if (0 === \count(Arr::get($this->channels, $connection->app->id, []))) {
             unset($this->channels[$connection->app->id]);
         }
     }

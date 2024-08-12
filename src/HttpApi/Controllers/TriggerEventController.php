@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeyondCode\LaravelWebSockets\HttpApi\Controllers;
 
 use BeyondCode\LaravelWebSockets\Dashboard\DashboardLogger;
@@ -18,7 +20,7 @@ class TriggerEventController extends Controller
         } else {
             $channels = $payload->all()['channels'] ?? [];
 
-            if (is_string($channels)) {
+            if (\is_string($channels)) {
                 $channels = [$channels];
             }
         }
