@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeyondCode\LaravelWebSockets\WebSockets\Messages;
 
 use BeyondCode\LaravelWebSockets\WebSockets\Channels\ChannelManager;

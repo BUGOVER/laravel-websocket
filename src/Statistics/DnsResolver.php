@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace BeyondCode\LaravelWebSockets\Statistics;
 
 use React\Dns\Resolver\ResolverInterface;
-use React\Promise\FulfilledPromise;
+use React\Promise;
 
 class DnsResolver implements ResolverInterface
 {
@@ -26,7 +26,7 @@ class DnsResolver implements ResolverInterface
 
     private function resolveInternal($domain, $type = null)
     {
-        return new FulfilledPromise($this->internalIP);
+        return new Promise\resolve($this->internalIP);
     }
 
     public function resolveAll($domain, $type)
