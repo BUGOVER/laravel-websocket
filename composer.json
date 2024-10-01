@@ -1,7 +1,7 @@
 {
   "name": "bugover/laravel-websocket",
   "description": "An easy to use WebSocket server",
-  "version": "1.16.0",
+  "version": "1.16.1",
   "keywords": [
     "bugover",
     "laravel-websocket"
@@ -28,16 +28,16 @@
     "cboden/ratchet": "^0.4.4",
     "facade/ignition-contracts": "^1.0.0",
     "guzzlehttp/psr7": "^1.7|^2.0",
-    "illuminate/broadcasting": "^9.0|^10.0|^11.0",
-    "illuminate/console": "^9.0|^10.0|^11.0",
-    "illuminate/http": "^9.0|^10.0|^11.0",
-    "illuminate/routing": "^9.0|^10.0|^11.0",
-    "illuminate/support": "^9.0|^10.0|^11.0",
+    "illuminate/broadcasting": "^9.0|^10.0",
+    "illuminate/console": "^9.0|^10.0",
+    "illuminate/http": "^9.0|^10.0",
+    "illuminate/routing": "^9.0|^10.0",
+    "illuminate/support": "^9.0|^10.0",
     "pusher/pusher-php-server": "^7.0.0",
     "react/dns": "^1.0.0",
     "react/http": "^1.0.0",
-    "symfony/http-kernel": "^6.0|^7.0",
-    "symfony/psr-http-message-bridge": "^7.0.0"
+    "symfony/http-kernel": "^6.0.0",
+    "symfony/psr-http-message-bridge": "^6.0.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
