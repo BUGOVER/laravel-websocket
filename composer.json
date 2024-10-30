@@ -1,7 +1,7 @@
 {
   "name": "bugover/laravel-websocket",
   "description": "An easy to use WebSocket server",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "keywords": [
     "bugover",
     "laravel-websocket"
@@ -33,9 +33,7 @@
     "illuminate/routing": "^11.0.0",
     "illuminate/support": "^11.0.0",
     "pusher/pusher-php-server": "^7.0.0",
-    "react/dns": "^1.0.0",
     "react/http": "^1.0.0",
-    "react/promise": "^3.0.0",
     "symfony/http-kernel": "^7.0.0",
     "symfony/psr-http-message-bridge": "^7.0.0"
   },
