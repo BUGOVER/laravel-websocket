@@ -35,7 +35,7 @@ class PresenceChannel extends Channel
         $channelData = json_decode($payload->channel_data, true);
 
         // The ID of the user connecting
-        $userId = (string)$channelData['user_id'];
+        $userId = (string) $channelData['user_id'];
 
         // Check if the user was already connected to the channel before storing the connection in the state
         $userFirstConnection = !isset($this->users[$userId]);
@@ -92,7 +92,7 @@ class PresenceChannel extends Channel
         unset($this->sockets[$connection->socketId]);
 
         // Test if the user still has open sockets to this channel
-        $userHasOpenConnections = (array_flip($this->sockets)[$userId] ?? null) !== null;
+        $userHasOpenConnections = null !== (array_flip($this->sockets)[$userId] ?? null);
 
         // The `pusher_internal:member_removed` is triggered when a user leaves a channel.
         // It's quite possible that a user can have multiple connections to the same channel

@@ -24,21 +24,23 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 abstract class Controller implements HttpServerInterface
 {
-    /** @var string */
+    /**
+ * @var string
+*/
     protected $requestBuffer = '';
 
-    /** @var RequestInterface */
+    /**
+ * @var RequestInterface
+*/
     protected $request;
 
-    /** @var int */
+    /**
+ * @var int
+*/
     protected $contentLength;
 
-    /** @var ChannelManager */
-    protected $channelManager;
-
-    public function __construct(ChannelManager $channelManager)
+    public function __construct(protected ChannelManager $channelManager)
     {
-        $this->channelManager = $channelManager;
     }
 
     public function onOpen(ConnectionInterface $connection, RequestInterface $request = null)
@@ -47,7 +49,7 @@ abstract class Controller implements HttpServerInterface
 
         $this->contentLength = $this->findContentLength($request->getHeaders());
 
-        $this->requestBuffer = (string)$request->getBody();
+        $this->requestBuffer = (string) $request->getBody();
 
         $this->checkContentLength($connection);
     }
@@ -55,7 +57,7 @@ abstract class Controller implements HttpServerInterface
     protected function findContentLength(array $headers): int
     {
         return Collection::make($headers)->first(function ($values, $header) {
-            return strtolower($header) === 'content-length';
+            return 'content-length' === strtolower($header);
         })[0] ?? 0;
     }
 
@@ -70,7 +72,7 @@ abstract class Controller implements HttpServerInterface
                 $this->request->getProtocolVersion()
             ))->withQueryParams(QueryParameters::create($this->request)->all());
 
-            $laravelRequest = Request::createFromBase((new HttpFoundationFactory)->createRequest($serverRequest));
+            $laravelRequest = Request::createFromBase((new HttpFoundationFactory())->createRequest($serverRequest));
 
             $this
                 ->ensureValidAppId($laravelRequest->appId)
@@ -96,7 +98,7 @@ abstract class Controller implements HttpServerInterface
          */
         $params = Arr::except($request->query(), ['auth_signature', 'body_md5', 'appId', 'appKey', 'channelName']);
 
-        if ($request->getContent() !== '') {
+        if ('' !== $request->getContent()) {
             $params['body_md5'] = md5($request->getContent());
         }
 
@@ -107,7 +109,7 @@ abstract class Controller implements HttpServerInterface
         $authSignature = hash_hmac('sha256', $signature, App::findById($request->get('appId'))->secret);
 
         if ($authSignature !== $request->get('auth_signature')) {
-            throw new HttpException(401, 'Invalid auth signature provided.');
+            throw new HttpException(401, 'Invalid auth signature is provided.');
         }
 
         return $this;
@@ -116,7 +118,7 @@ abstract class Controller implements HttpServerInterface
     public function ensureValidAppId(string $appId)
     {
         if (!App::findById($appId)) {
-            throw new HttpException(401, "Unknown app id `{$appId}` provided.");
+            throw new HttpException(401, "Unknown app ID `{$appId}` provided.");
         }
 
         return $this;

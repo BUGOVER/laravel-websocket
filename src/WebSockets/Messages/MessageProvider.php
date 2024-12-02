@@ -27,7 +27,8 @@ class MessageProvider
         protected array $routeData,
         protected Model $user,
         protected object $data
-    ) {
+    )
+    {
     }
 
     /**

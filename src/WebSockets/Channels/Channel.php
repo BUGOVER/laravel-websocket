@@ -12,15 +12,13 @@ use stdClass;
 
 class Channel
 {
-    /** @var string */
-    protected $channelName;
-
-    /** @var ConnectionInterface[] */
+    /**
+     * @var ConnectionInterface[]
+     */
     protected $subscribedConnections = [];
 
-    public function __construct(string $channelName)
+    public function __construct(protected string $channelName)
     {
-        $this->channelName = $channelName;
     }
 
     public function getName(): string
@@ -109,10 +107,10 @@ class Channel
 
     protected function verifySignature(ConnectionInterface $connection, stdClass $payload)
     {
-        $signature = "{$connection->socketId}:{$this->channelName}";
+        $signature = "$connection->socketId:$this->channelName";
 
         if (isset($payload->channel_data)) {
-            $signature .= ":{$payload->channel_data}";
+            $signature .= ":$payload->channel_data";
         }
 
         if (Str::after($payload->auth, ':') !== hash_hmac('sha256', $signature, $connection->app->secret)) {

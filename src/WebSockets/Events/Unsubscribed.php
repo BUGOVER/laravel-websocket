@@ -27,6 +27,7 @@ class Unsubscribed
         public string $socketId,
         public string $channelName,
         public ?stdClass $user = null
-    ) {
+    )
+    {
     }
 }

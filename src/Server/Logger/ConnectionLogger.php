@@ -8,7 +8,9 @@ use Ratchet\ConnectionInterface;
 
 class ConnectionLogger extends Logger implements ConnectionInterface
 {
-    /** @var ConnectionInterface */
+    /**
+ * @var ConnectionInterface
+*/
     protected $connection;
 
     /**
@@ -17,9 +19,7 @@ class ConnectionLogger extends Logger implements ConnectionInterface
      */
     public static function decorate(ConnectionInterface $app): self
     {
-        $logger = app(self::class);
-
-        return $logger->setConnection($app);
+        return app(self::class)->setConnection($app);
     }
 
     public function send($data)

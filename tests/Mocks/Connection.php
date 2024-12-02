@@ -8,7 +8,9 @@ use Ratchet\ConnectionInterface;
 
 class Connection implements ConnectionInterface
 {
-    /** @var Request */
+    /**
+     * @var Request
+     */
     public $httpRequest;
 
     public $sentData = [];
@@ -39,7 +41,7 @@ class Connection implements ConnectionInterface
         $event = collect($this->sentData)->firstWhere('event', '=', $name);
 
         PHPUnit::assertTrue(
-            ! is_null($event)
+            !is_null($event)
         );
 
         foreach ($additionalParameters as $parameter => $value) {

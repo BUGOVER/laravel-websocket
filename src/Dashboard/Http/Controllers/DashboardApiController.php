@@ -13,7 +13,7 @@ class DashboardApiController
 
         $statisticData = $statistics->map(function ($statistic) {
             return [
-                'timestamp' => (string)$statistic->created_at,
+                'timestamp' => (string) $statistic->created_at,
                 'peak_connection_count' => $statistic->peak_connection_count,
                 'websocket_message_count' => $statistic->websocket_message_count,
                 'api_message_count' => $statistic->api_message_count,

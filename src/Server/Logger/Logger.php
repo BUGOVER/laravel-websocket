@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeyondCode\LaravelWebSockets\Server\Logger;
 
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
@@ -7,18 +9,18 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Logger
 {
-    /** @var OutputInterface */
-    protected $consoleOutput;
-
-    /** @var bool */
+    /**
+ * @var bool
+*/
     protected $enabled = false;
 
-    /** @var bool */
+    /**
+ * @var bool
+*/
     protected $verbose = false;
 
-    public function __construct(OutputInterface $consoleOutput)
+    public function __construct(protected OutputInterface $consoleOutput)
     {
-        $this->consoleOutput = $consoleOutput;
     }
 
     public static function isEnabled(): bool

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeyondCode\LaravelWebSockets\Server\Logger;
 
 use BeyondCode\LaravelWebSockets\QueryParameters;
@@ -11,7 +13,9 @@ use Ratchet\WebSocket\MessageComponentInterface;
 
 class WebsocketsLogger extends Logger implements MessageComponentInterface
 {
-    /** @var HttpServerInterface */
+    /**
+ * @var HttpServerInterface
+*/
     protected $app;
 
     public function onOpen(ConnectionInterface $connection)
@@ -25,9 +29,7 @@ class WebsocketsLogger extends Logger implements MessageComponentInterface
 
     public static function decorate(MessageComponentInterface $app): self
     {
-        $logger = app(self::class);
-
-        return $logger->setApp($app);
+        return app(self::class)->setApp($app);
     }
 
     public function setApp(MessageComponentInterface $app)

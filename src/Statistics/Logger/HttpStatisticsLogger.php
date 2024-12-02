@@ -14,13 +14,19 @@ use React\Http\Browser;
 
 class HttpStatisticsLogger implements StatisticsLogger
 {
-    /** @var Statistic[] */
+    /**
+ * @var Statistic[]
+*/
     protected $statistics = [];
 
-    /** @var ChannelManager */
+    /**
+ * @var ChannelManager
+*/
     protected $channelManager;
 
-    /** @var Browser */
+    /**
+ * @var Browser
+*/
     protected $browser;
 
     public function __construct(ChannelManager $channelManager, Browser $browser)

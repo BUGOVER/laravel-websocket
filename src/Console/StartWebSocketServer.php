@@ -26,7 +26,8 @@ use React\Socket\Connector;
 
 class StartWebSocketServer extends Command
 {
-    protected $signature = 'websockets:serve {--host=0.0.0.0} {--port=6001} {--debug : Forces the loggers to be enabled and thereby overriding the app.debug config setting } ';
+    protected $signature = 'websockets:serve {--host=0.0.0.0} {--port=6001} {--debug : Forces the loggers to be enabled and thereby overriding the app.debug config setting }';
+
 
     protected $description = 'Start the Laravel WebSocket Server';
 
@@ -44,7 +45,7 @@ class StartWebSocketServer extends Command
     {
         parent::__construct();
 
-        $this->loop = Loop::get(); // LoopFactory::create();
+        $this->loop = Loop::get();
     }
 
     /**
@@ -148,7 +149,7 @@ class StartWebSocketServer extends Command
     {
         app()->singleton(WebsocketsLogger::class, function ($app) {
             return (new WebsocketsLogger($this->output))
-                ->enable(true) // @TODO this debug already true
+                ->enable() // @TODO this debug already true
                 ->verbose($this->output->isVerbose());
         });
 
@@ -177,8 +178,8 @@ class StartWebSocketServer extends Command
         $connector = new Connector($this->loop, [
             'dns' => $this->getDnsResolver(),
             'tls' => [
-                'verify_peer' => config('app.env') === 'production',
-                'verify_peer_name' => config('app.env') === 'production',
+                'verify_peer' => 'production' === config('app.env'),
+                'verify_peer_name' => 'production' === config('app.env'),
             ],
         ]);
 
@@ -204,7 +205,7 @@ class StartWebSocketServer extends Command
     protected function getDnsResolver(): ResolverInterface
     {
         if (!config('websockets.statistics.perform_dns_lookup')) {
-            return new DnsResolver;
+            return new DnsResolver();
         }
 
         $dnsConfig = DnsConfig::loadSystemConfigBlocking();

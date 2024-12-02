@@ -16,7 +16,7 @@ class FetchUsersController extends Controller
         $channel = $this->channelManager->find($request->appId, $request->channelName);
 
         if (null === $channel) {
-            throw new HttpException(404, 'Unknown channel "' . $request->channelName . '"');
+            throw new HttpException(404, 'An unknown channel "' . $request->channelName . '"');
         }
 
         if (!$channel instanceof PresenceChannel) {

@@ -19,7 +19,8 @@ class PusherMessageFactory
         MessageInterface $message,
         ConnectionInterface $connection,
         ChannelManager $channelManager
-    ): PusherMessage {
+    ): PusherMessage
+    {
         $payload = json_decode($message->getPayload(), false, 512, JSON_THROW_ON_ERROR);
 
         return Str::startsWith($payload->event, 'pusher:')

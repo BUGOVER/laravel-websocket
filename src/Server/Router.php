@@ -31,7 +31,7 @@ class Router
 
     public function __construct()
     {
-        $this->routes = new RouteCollection;
+        $this->routes = new RouteCollection();
         $this->customRoutes = new Collection();
     }
 

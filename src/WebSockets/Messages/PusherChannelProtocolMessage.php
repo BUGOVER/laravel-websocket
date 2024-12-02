@@ -15,15 +15,16 @@ class PusherChannelProtocolMessage implements PusherMessage
         protected stdClass $payload,
         protected ConnectionInterface $connection,
         protected ChannelManager $channelManager
-    ) {
+    )
+    {
     }
 
     public function respond()
     {
         $eventName = Str::camel(Str::after($this->payload->event, ':'));
 
-        if (method_exists($this, $eventName) && $eventName !== 'respond') {
-            call_user_func([$this, $eventName], $this->connection, $this->payload->data ?? new stdClass());
+        if (method_exists($this, $eventName) && 'respond' !== $eventName) {
+            \call_user_func([$this, $eventName], $this->connection, $this->payload->data ?? new stdClass());
         }
     }
 

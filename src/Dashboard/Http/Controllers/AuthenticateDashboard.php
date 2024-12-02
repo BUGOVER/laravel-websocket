@@ -34,6 +34,7 @@ class AuthenticateDashboard
          * Authorize middleware, we can trust all channel
          * authentication requests in here.
          */
+
         return $broadcaster->validAuthenticationResponse($request, []);
     }
 }

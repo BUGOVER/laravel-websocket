@@ -6,7 +6,7 @@ use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 
 $rules = [
-    'psr12' => true,
+    '@PSR12' => true,
     'array_indentation' => true,
     'no_unused_imports' => true,
     'array_syntax' => ['syntax' => 'short'],
@@ -17,7 +17,7 @@ $rules = [
     'blank_line_after_namespace' => true,
     'blank_line_after_opening_tag' => true,
     'blank_line_before_statement' => [
-        'statements' => ['return'],
+        'statements' => ['break', 'continue', 'declare', 'return', 'throw', 'try'],
     ],
     'braces' => true,
     'cast_spaces' => true,
@@ -98,13 +98,17 @@ $rules = [
         'statements' => ['break', 'clone', 'continue', 'echo_print', 'return', 'switch_case', 'yield'],
     ],
     'no_unreachable_default_argument_value' => true,
+    'no_trailing_whitespace_in_string' => true,
     'no_useless_return' => true,
     'no_whitespace_before_comma_in_array' => true,
     'no_whitespace_in_blank_line' => true,
     'normalize_index_brace' => true,
     'not_operator_with_successor_space' => true,
     'object_operator_without_whitespace' => true,
-    'ordered_imports' => ['sort_algorithm' => 'alpha'],
+    'ordered_imports' => ['sort_algorithm' => ['length', 'alpha']],
+    'ordered_use' => [
+        'sortAlgorithm' => 'alpha',
+    ],
     'psr_autoloading' => true,
     'phpdoc_indent' => true,
     'phpdoc_inline_tag_normalizer' => true,
@@ -121,7 +125,8 @@ $rules = [
     'phpdoc_var_without_name' => true,
     'self_accessor' => true,
     'short_scalar_cast' => true,
-    'simplified_null_return' => false,
+    'simplified_null_return' => true,
+    'declare_strict_types' => true,
     'single_blank_line_at_eof' => true,
     'single_blank_line_before_namespace' => true,
     'single_class_element_per_statement' => [
@@ -130,7 +135,7 @@ $rules = [
     'single_import_per_statement' => true,
     'single_line_after_imports' => true,
     'single_line_comment_style' => [
-        'comment_types' => ['hash'],
+        'comment_types' => ['hash', 'asterisk'],
     ],
     'single_quote' => true,
     'space_after_semicolon' => true,
@@ -147,14 +152,9 @@ $rules = [
     'whitespace_after_comma_in_array' => true,
 ];
 
-
 $finder = Finder::create()
     ->in([
         __DIR__ . '/src',
-        __DIR__ . '/config',
-        __DIR__ . '/database',
-        __DIR__ . '/resources',
-        __DIR__ . '/tests',
     ])
     ->name('*.php')
     ->notName('*.blade.php')

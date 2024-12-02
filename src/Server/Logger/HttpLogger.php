@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeyondCode\LaravelWebSockets\Server\Logger;
 
 use Exception;
@@ -9,14 +11,14 @@ use Ratchet\MessageComponentInterface;
 
 class HttpLogger extends Logger implements MessageComponentInterface
 {
-    /** @var HttpServerInterface */
+    /**
+ * @var HttpServerInterface
+*/
     protected $app;
 
     public static function decorate(MessageComponentInterface $app): self
     {
-        $logger = app(self::class);
-
-        return $logger->setApp($app);
+        return app(self::class)->setApp($app);
     }
 
     public function setApp(MessageComponentInterface $app)

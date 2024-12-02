@@ -8,19 +8,29 @@ use BeyondCode\LaravelWebSockets\Apps\App;
 
 class Statistic
 {
-    /** @var int|string */
+    /**
+ * @var int|string
+*/
     protected $appId;
 
-    /** @var int */
+    /**
+ * @var int
+*/
     protected $currentConnectionCount = 0;
 
-    /** @var int */
+    /**
+ * @var int
+*/
     protected $peakConnectionCount = 0;
 
-    /** @var int */
+    /**
+ * @var int
+*/
     protected $webSocketMessageCount = 0;
 
-    /** @var int */
+    /**
+ * @var int
+*/
     protected $apiMessageCount = 0;
 
     public function __construct($appId)

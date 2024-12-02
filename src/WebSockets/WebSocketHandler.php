@@ -15,11 +15,12 @@ use BeyondCode\LaravelWebSockets\WebSockets\Exceptions\WebSocketException;
 use BeyondCode\LaravelWebSockets\WebSockets\Messages\PusherMessageFactory;
 use Exception;
 use JsonException;
+use Random\RandomException;
 use Ratchet\ConnectionInterface;
 use Ratchet\RFC6455\Messaging\MessageInterface;
 use Ratchet\WebSocket\MessageComponentInterface;
 
-//use Random\RandomException;
+use function sprintf;
 
 class WebSocketHandler implements MessageComponentInterface
 {
@@ -60,6 +61,7 @@ class WebSocketHandler implements MessageComponentInterface
     /**
      * @param ConnectionInterface $connection
      * @return $this
+     * @throws RandomException
      * @throws RandomException
      */
     protected function generateSocketId(ConnectionInterface $connection): static

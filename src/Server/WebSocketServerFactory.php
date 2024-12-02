@@ -10,7 +10,6 @@ use Ratchet\Server\IoServer;
 use React\EventLoop\Loop;
 use React\EventLoop\LoopInterface;
 use React\Socket\SecureServer;
-use React\Socket\Server;
 use React\Socket\SocketServer;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
@@ -19,19 +18,29 @@ use Symfony\Component\Routing\RouteCollection;
 
 class WebSocketServerFactory
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $host = '127.0.0.1';
 
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $port = 8080;
 
-    /** @var LoopInterface */
+    /**
+     * @var LoopInterface
+     */
     protected $loop;
 
-    /** @var RouteCollection */
+    /**
+     * @var RouteCollection
+     */
     protected $routes;
 
-    /** @var Symfony\Component\Console\Output\OutputInterface */
+    /**
+     * @var Symfony\Component\Console\Output\OutputInterface
+     */
     protected $consoleOutput;
 
     public function __construct()
@@ -76,7 +85,7 @@ class WebSocketServerFactory
 
     public function createServer(): IoServer
     {
-        $socket = new SocketServer(uri: "{$this->host}:{$this->port}", loop: $this->loop); // new Server();
+        $socket = new SocketServer(uri: "$this->host:$this->port", loop: $this->loop); // new Server();
 
         if (config('websockets.ssl.local_cert')) {
             $socket = new SecureServer($socket, $this->loop, config('websockets.ssl'));

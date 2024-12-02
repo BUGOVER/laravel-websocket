@@ -6,7 +6,9 @@ namespace BeyondCode\LaravelWebSockets\Apps;
 
 interface AppProvider
 {
-    /**  @return array[BeyondCode\LaravelWebSockets\AppProviders\App] */
+    /**
+  * @return array[BeyondCode\LaravelWebSockets\AppProviders\App]
+*/
     public function all(): array;
 
     public function findById($appId): ?App;

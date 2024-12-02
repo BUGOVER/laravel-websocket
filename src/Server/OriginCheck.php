@@ -15,21 +15,13 @@ class OriginCheck implements HttpServerInterface
 {
     use CloseResponseTrait;
 
-    /** @var MessageComponentInterface */
-    protected $_component;
-
-    protected $allowedOrigins = [];
-
-    public function __construct(MessageComponentInterface $component, array $allowedOrigins = [])
+    public function __construct(protected MessageComponentInterface $_component, protected array $allowedOrigins = [])
     {
-        $this->_component = $component;
-
-        $this->allowedOrigins = $allowedOrigins;
     }
 
     public function onOpen(ConnectionInterface $connection, RequestInterface $request = null)
     {
-        if ($request->hasHeader('Origin')) {
+        if ($request && $request->hasHeader('Origin')) {
             $this->verifyOrigin($connection, $request);
         }
 
@@ -38,7 +30,7 @@ class OriginCheck implements HttpServerInterface
 
     protected function verifyOrigin(ConnectionInterface $connection, RequestInterface $request)
     {
-        $header = (string)$request->getHeader('Origin')[0];
+        $header = (string) $request->getHeader('Origin')[0];
         $origin = parse_url($header, PHP_URL_HOST) ?: $header;
 
         if (!empty($this->allowedOrigins) && !in_array($origin, $this->allowedOrigins)) {

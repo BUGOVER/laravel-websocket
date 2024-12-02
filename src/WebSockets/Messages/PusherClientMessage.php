@@ -19,7 +19,8 @@ class PusherClientMessage implements PusherMessage
         protected stdClass $payload,
         protected ConnectionInterface $connection,
         protected ChannelManager $channelManager
-    ) {
+    )
+    {
     }
 
     /**
@@ -109,13 +110,13 @@ class PusherClientMessage implements PusherMessage
         $data = explode(',', $eloquent_where[0]);
 
         $user = (new $model_name())
-            ->where((string)$data[0], $data[1], $data[2])
+            ->where((string) $data[0], $data[1], $data[2])
             ->where(
                 static function ($query) use ($eloquent_where) {
                     unset($eloquent_where[0]);
                     foreach ($eloquent_where as $where) {
                         $data = explode(',', $where);
-                        $query->where((string)$data[0], $data[1], $data[2]);
+                        $query->where((string) $data[0], $data[1], $data[2]);
                     }
                 }
             )
@@ -136,7 +137,7 @@ class PusherClientMessage implements PusherMessage
         $url = str_replace(['/', '\\', ' '], '', Str::after($this->payload->event, $prefix));
         $routes = require base_path("routes/socket/$route_file.php");
 
-        if (!array_key_exists($url, $routes)) {
+        if (!\array_key_exists($url, $routes)) {
             return null;
         }
 

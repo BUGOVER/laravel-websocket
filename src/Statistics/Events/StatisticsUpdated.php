@@ -15,7 +15,9 @@ class StatisticsUpdated implements ShouldBroadcast
 {
     use SerializesModels;
 
-    /** @var WebSocketsStatisticsEntry */
+    /**
+ * @var WebSocketsStatisticsEntry
+*/
     protected $webSocketsStatisticsEntry;
 
     public function __construct(WebSocketsStatisticsEntry $webSocketsStatisticsEntry)
@@ -26,7 +28,7 @@ class StatisticsUpdated implements ShouldBroadcast
     public function broadcastWith()
     {
         return [
-            'time' => (string)$this->webSocketsStatisticsEntry->created_at,
+            'time' => (string) $this->webSocketsStatisticsEntry->created_at,
             'app_id' => $this->webSocketsStatisticsEntry->app_id,
             'peak_connection_count' => $this->webSocketsStatisticsEntry->peak_connection_count,
             'websocket_message_count' => $this->webSocketsStatisticsEntry->websocket_message_count,

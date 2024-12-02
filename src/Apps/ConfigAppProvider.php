@@ -8,7 +8,9 @@ use Illuminate\Support\Collection;
 
 class ConfigAppProvider implements AppProvider
 {
-    /** @var Collection */
+    /**
+ * @var Collection
+*/
     protected $apps;
 
     public function __construct()
@@ -16,7 +18,9 @@ class ConfigAppProvider implements AppProvider
         $this->apps = collect(config('websockets.apps'));
     }
 
-    /**  @return array[\BeyondCode\LaravelWebSockets\AppProviders\App] */
+    /**
+  * @return array[\BeyondCode\LaravelWebSockets\AppProviders\App]
+*/
     public function all(): array
     {
         return $this->apps

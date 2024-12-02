@@ -8,31 +8,49 @@ use BeyondCode\LaravelWebSockets\Exceptions\InvalidApp;
 
 class App
 {
-    /** @var int */
+    /**
+ * @var int
+*/
     public $id;
 
-    /** @var string */
+    /**
+ * @var string
+*/
     public $key;
 
-    /** @var string */
+    /**
+ * @var string
+*/
     public $secret;
 
-    /** @var string|null */
+    /**
+ * @var string|null
+*/
     public $name;
 
-    /** @var string|null */
+    /**
+ * @var string|null
+*/
     public $host;
 
-    /** @var string|null */
+    /**
+ * @var string|null
+*/
     public $path;
 
-    /** @var int|null */
+    /**
+ * @var int|null
+*/
     public $capacity = null;
 
-    /** @var bool */
+    /**
+ * @var bool
+*/
     public $clientMessagesEnabled = false;
 
-    /** @var bool */
+    /**
+ * @var bool
+*/
     public $statisticsEnabled = true;
 
     public function __construct($appId, string $appKey, string $appSecret)

@@ -14,10 +14,14 @@ use Ratchet\ConnectionInterface;
 
 class ArrayChannelManager implements ChannelManager
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $appId;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $channels = [];
 
     public function findOrCreate(string $appId, string $channelName): Channel
